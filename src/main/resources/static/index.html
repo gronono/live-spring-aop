@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Test</title>
+</head>
+<body>
+<label for="factoriel">Factoriel</label>
+<input id="facI" type="text" />
+<span id="facR">0</span>
+<hr/>
+<label for="fibonacci">Fibonacci</label>
+<input id="fibI" type="text" />
+<span id="fibR">0</span>
+
+<script>
+const facI = document.querySelector("#facI");
+facI.addEventListener('keyup', event => {
+    if (event.key === 'Enter') {
+    	fetch('/factorial?n=' + facI.value)
+    	   .then(res => res.json())
+    	   .then(response => document.querySelector('#facR').textContent = JSON.stringify(response));
+    }
+});
+const fibI = document.querySelector("#fibI");
+fibI.addEventListener('keyup', event => {
+    if (event.key === 'Enter') {
+        fetch('/fibonacci?n=' + fibI.value)
+           .then(res => res.json())
+           .then(response => document.querySelector('#fibR').textContent = JSON.stringify(response));
+    }
+});
+</script>
+</body>
+</html>
